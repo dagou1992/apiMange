@@ -16,19 +16,19 @@
 
 #### 首页
 
-![首页](./src/assets/api-mange-index.png)
+![](./src/assets/api-mange-index.png)
 
 #### 详情页
 
-![详情页](./src/assets/api-mange-detail.png)
+![](./src/assets/api-mange-detail.png)
 
 #### 编辑页
 
-![编辑页](./src/assets/api-mange-edit.png)
+![](./src/assets/api-mange-edit.png)
 
 #### 测试页面
 
-![测试页面](./src/assets/api-mange-test.png)
+![](./src/assets/api-mange-test.png)
 
 ## 待实现功能
 
