@@ -14,44 +14,13 @@
 
 ## 部分界面显示
 
-![ ](https://raw.githubusercontent.com/dagou1992/img-folder/master/api-mange-index.png)
+![](./src/assets/api-mange-index.png)
+![](./src/assets/api-mange-detail.png)
+![](./src/assets/api-mange-edit.png)
+![](./src/assets/api-mange-test.png)
 
-## Project setup
+## 待实现功能
 
-```
-yarn install
-```
-
-### Compiles and hot-reloads for development
-
-```
-yarn run serve
-```
-
-### Compiles and minifies for production
-
-```
-yarn run build
-```
-
-### Run your tests
-
-```
-yarn run test
-```
-
-### Lints and fixes files
-
-```
-yarn run lint
-```
-
-### Run your unit tests
-
-```
-yarn run test:unit
-```
-
-### Customize configuration
-
-See [Configuration Reference](https://cli.vuejs.org/config/).
+- 用户登录、权限管理；
+- 项目环境快速配置、数据结构配置；
+- 快速测试添加更多的参数配置；
