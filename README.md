@@ -14,7 +14,6 @@
 
 ## 部分界面显示
 
-![](https://github.com/dagou1992/apiMange/raw/master/src/assets/api-mange-index.png)
 ![](./src/assets/api-mange-index.png)
 ![](./src/assets/api-mange-detail.png)
 ![](./src/assets/api-mange-edit.png)
