@@ -1,4 +1,4 @@
-# data-server
+# api-mange
 
 > 基于 vue 框架实现的接口管理平台
 
@@ -14,10 +14,10 @@
 
 ## 部分界面显示
 
-![](./src/assets/api-mange-index.png)
-![](./src/assets/api-mange-detail.png)
-![](./src/assets/api-mange-edit.png)
-![](./src/assets/api-mange-test.png)
+![首页](./src/assets/api-mange-index.png)
+![详情页](./src/assets/api-mange-detail.png)
+![编辑页](./src/assets/api-mange-edit.png)
+![测试页面](./src/assets/api-mange-test.png)
 
 ## 待实现功能
 
