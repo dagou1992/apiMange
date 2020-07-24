@@ -57,7 +57,7 @@
               </div>
             </template>
           </el-table-column>
-          <table-operation @on-to-delete-data="handleToDeleteData" />
+          <table-operation :operations="operations" />
         </el-table>
       </div>
       <div class="table-footer">
@@ -85,7 +85,7 @@
 import { mapGetters } from 'vuex';
 import { getApiData, deleteApiData } from '../../api/api';
 import { timestampToTime } from '../../util/time';
-import TableOperation from './TableOperation';
+import TableOperation from '../common/TableOperation';
 import mixin from '../mixin';
 export default {
   name: 'Table',
@@ -109,6 +109,26 @@ export default {
         },
         { label: 'URL', value: 'path' },
         { label: '更新时间', value: 'updatedTime', sortable: true },
+      ],
+      operations: [
+        {
+          label: '编辑',
+          onClick: ({ id }) =>
+            this.$router.push({ name: 'ApiEditPage', query: { id } }),
+        },
+        {
+          label: '新标签打开',
+          onClick: ({ id }) => window.open(`#/api/detail?id=${id}`),
+        },
+        {
+          label: '删除',
+          onClick: ({ id, group }) =>
+            this.$store.dispatch('globalDialog/toggleDialogVisible', {
+              message: `<span style="color: red;">确定要删除吗？</span>`,
+              visible: true,
+              onSubmit: () => this.handleToDeleteData({ id, group }),
+            }),
+        },
       ],
       loading: false,
       searchValue: '',

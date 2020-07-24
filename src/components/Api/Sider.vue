@@ -11,9 +11,6 @@
             <i class="el-icon-plus"></i> 新建分组
           </el-button>
         </div>
-        <!--        <el-button style="float: right; padding: 9px 0;" type="text">-->
-        <!--          操作按钮-->
-        <!--        </el-button>-->
       </div>
       <div style="margin: 8px;">
         <el-input

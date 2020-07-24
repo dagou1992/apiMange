@@ -17,12 +17,12 @@ const routes = [
         component: () => import('../views/Api'),
       },
       {
-        path: '/detail',
+        path: '/api/detail',
         name: 'ApiDetailPage',
         component: () => import('../views/Api/ApiDetail'),
       },
       {
-        path: '/edit',
+        path: '/api/edit',
         name: 'ApiEditPage',
         component: () => import('../views/Api/ApiEdit'),
       },
@@ -38,6 +38,28 @@ const routes = [
         path: '/',
         name: 'TestPage',
         component: () => import('../views/Test'),
+      },
+    ],
+  },
+  {
+    path: '/Common',
+    name: '公共资源管理',
+    component: Container,
+    icon: 'el-icon-menu',
+    children: [
+      {
+        path: '/Common/env',
+        name: '环境配置',
+        onSide: true,
+        icon: 'el-icon-s-tools',
+        component: () => import('../views/Common/Env'),
+      },
+      {
+        path: '/Common/dataStructure',
+        name: '数据结构',
+        onSide: true,
+        icon: 'el-icon-s-tools',
+        component: () => import('../views/Common/DataStructure'),
       },
     ],
   },
