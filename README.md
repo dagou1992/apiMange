@@ -30,8 +30,16 @@
 
 ![](./src/assets/api-mange-test.png)
 
+#### 环境配置
+
+![](./src/assets/api-mange-env.png)
+
+#### 数据结构
+
+![](./src/assets/api-mange-data.png)
+
 ## 待实现功能
 
 - 用户登录、权限管理；
-- 项目环境快速配置、数据结构配置；
 - 快速测试添加更多的参数配置；
+- 导出 markdown 格式的文档；
