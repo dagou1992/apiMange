@@ -41,7 +41,7 @@ export default {
   name: 'Aside',
   computed: {
     menuList() {
-      return this.$router.options.routes.map(item => ({
+      return this.$router.options.routes.filter(item => !item.isHidden).map(item => ({
         ...item,
         children: item.children.filter(item => item.onSide),
       }));

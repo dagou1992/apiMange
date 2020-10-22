@@ -6,6 +6,11 @@ Vue.use(VueRouter);
 
 const routes = [
   {
+    path: '/',
+    redirect: '/api',
+    isHidden: true,
+  },
+  {
     path: '/api',
     name: 'Api管理',
     component: Container,
