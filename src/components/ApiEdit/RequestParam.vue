@@ -1,6 +1,7 @@
 <template>
   <div class="request_param">
     <el-tabs
+      class="request_param_tabs"
       v-model="activeTabName"
       type="border-card"
       @tab-click="handleTabClick"
@@ -178,12 +179,9 @@ export default {
     margin: -15px;
     margin-top: 5px;
   }
-  span {
-    color: #1890ef;
-    cursor: pointer;
-  }
-  span:hover {
-    text-decoration: underline;
+  .request_param_tabs /deep/ .el-tabs__header {
+    width: 100% !important;
   }
 }
+
 </style>

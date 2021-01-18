@@ -32,8 +32,7 @@
             color: '#333',
             borderLeft: '1px solid #ddd',
           }"
-          :row-style="{ cursor: 'pointer' }"
-          :default-sort="{ prop: 'updatedTime', order: 'descending' }"
+          :row-style="{ cursor: 'pointer', letterSpacing: '1px' }"
           @cell-click="cellClick"
         >
           <el-table-column
@@ -133,7 +132,7 @@ export default {
       loading: false,
       searchValue: '',
       pageIndex: 1,
-      pageSize: 10,
+      pageSize: 20,
       total: 0,
     };
   },
@@ -180,7 +179,7 @@ export default {
     handleSizeChange(value) {
       this.pageSize = value;
     },
-    initPage() {
+    async initPage() {
       this.loading = true;
       const { activeGroup, searchValue, pageIndex, pageSize } = this;
       const param = {
@@ -191,15 +190,18 @@ export default {
       if (searchValue.trim() !== '') {
         param.value = searchValue;
       }
-      getApiData(param).then(res => {
-        this.tableData = res.data.map(item => ({
-          ...item,
-          createdTime: timestampToTime(item.createdTime),
-          updatedTime: timestampToTime(item.updatedTime),
-        }));
+      const res = await getApiData(param);
+      if (res) {
+        this.tableData = res.data
+          .map(item => ({
+            ...item,
+            createdTime: timestampToTime(item.createdTime),
+            updatedTime: timestampToTime(item.updatedTime),
+          }))
+          .sort((a, b) => a.createdTime - b.createdTime);
         this.total = res.total;
         this.loading = false;
-      });
+      }
     },
   },
 };
