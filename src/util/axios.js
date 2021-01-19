@@ -58,25 +58,24 @@ function getDefaultInstance() {
 
 function getExportInstance() {
   const instance = axios.create({
-      baseURL: '/',
-      responseType: 'blob',
+    baseURL: '/',
+    responseType: 'blob',
   });
 
   let fileName = '';
 
   instance.interceptors.request.use(config => {
-      fileName = config.data.fileName + '.md';
-      return config;
+    fileName = config.data.fileName + '.md';
+    return config;
   });
 
-
   instance.interceptors.response.use(res => {
-      let a = document.createElement('a');
-      let url = window.URL.createObjectURL(res.data);
-      a.href = url;
-      a.download = fileName;
-      a.click();
-      window.URL.revokeObjectURL(url);
+    let a = document.createElement('a');
+    let url = window.URL.createObjectURL(res.data);
+    a.href = url;
+    a.download = fileName;
+    a.click();
+    window.URL.revokeObjectURL(url);
   });
 
   return instance;

@@ -149,8 +149,15 @@ export default {
       });
     },
     async handleToExportGroup(id) {
-      const fileName = this.menuList.find(item => Number(item.id) === Number(id)).name;
-      await exportGroupData({fileName, group: id, pageIndex: 1, pageSize: 20000});
+      const fileName = this.menuList.find(
+        item => Number(item.id) === Number(id),
+      ).name;
+      await exportGroupData({
+        fileName,
+        group: id,
+        pageIndex: 1,
+        pageSize: 20000,
+      });
     },
     submitCreateGroup(name) {
       createGroupData({ name }).then(() => {
