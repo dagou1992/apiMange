@@ -41,10 +41,12 @@ export default {
   name: 'Aside',
   computed: {
     menuList() {
-      return this.$router.options.routes.filter(item => !item.isHidden).map(item => ({
-        ...item,
-        children: item.children.filter(item => item.onSide),
-      }));
+      return this.$router.options.routes
+        .filter(item => !item.isHidden)
+        .map(item => ({
+          ...item,
+          children: item.children.filter(item => item.onSide),
+        }));
     },
     activePath() {
       return this.$router.history.current.path;

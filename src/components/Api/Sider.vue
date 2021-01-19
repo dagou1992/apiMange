@@ -62,6 +62,9 @@
                       :command="{ type: 'edit', value: { name, id } }"
                       >编辑</el-dropdown-item
                     >
+                    <el-dropdown-item :command="{ type: 'export', value: id }"
+                      >导出</el-dropdown-item
+                    >
                     <el-dropdown-item :command="{ type: 'delete', value: id }"
                       >删除</el-dropdown-item
                     >
@@ -84,6 +87,8 @@ import {
   updateGroupData,
   deleteGroupData,
 } from '../../api/group';
+import { getApiData } from '../../api/api';
+import { exportGroupData } from '../../api/group';
 import mixin from '../mixin';
 
 export default {
@@ -108,9 +113,16 @@ export default {
     },
     handleGroupClick(param) {
       const { type, value } = param;
-      type === 'edit'
-        ? this.handleToEditGroup(value)
-        : this.handleToDeleteGroup(value);
+      if (type === 'edit') {
+        this.handleToEditGroup(value);
+      }
+      if (type === 'export') {
+        this.handleToExportGroup(value);
+      }
+
+      if (type === 'delete') {
+        this.handleToDeleteGroup(value);
+      }
     },
     handleToAddGroup() {
       this.$store.dispatch('globalDialog/toggleDialogVisible', {
@@ -135,6 +147,10 @@ export default {
         visible: true,
         onSubmit: () => this.submitDeleteGroup(id),
       });
+    },
+    async handleToExportGroup(id) {
+      const fileName = this.menuList.find(item => Number(item.id) === Number(id)).name;
+      await exportGroupData({fileName, group: id, pageIndex: 1, pageSize: 20000});
     },
     submitCreateGroup(name) {
       createGroupData({ name }).then(() => {

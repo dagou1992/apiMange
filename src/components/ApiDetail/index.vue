@@ -59,9 +59,9 @@
       </div>
     </template>
     <p class="title">返回参数</p>
-    <el-tag style="margin-bottom: 10px;"
-      >JSON根类型： {{ data.responseParam.type }}</el-tag
-    >
+    <el-tag style="margin-bottom: 10px;">
+      JSON根类型： {{ data.responseParam.type }}
+    </el-tag>
     <common-table
       :data-source="data.responseParam.data"
       :is-edit="false"

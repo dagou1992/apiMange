@@ -24,6 +24,10 @@ export function putJson(url, data) {
   return instance.put(url, data);
 }
 
+export function exportFileData(url, data) {
+  return getExportInstance().post(url, data);
+}
+
 function getDefaultInstance() {
   const instance = axios.create({
     baseURL: '/',
@@ -48,6 +52,32 @@ function getDefaultInstance() {
       throw err;
     },
   );
+
+  return instance;
+}
+
+function getExportInstance() {
+  const instance = axios.create({
+      baseURL: '/',
+      responseType: 'blob',
+  });
+
+  let fileName = '';
+
+  instance.interceptors.request.use(config => {
+      fileName = config.data.fileName + '.md';
+      return config;
+  });
+
+
+  instance.interceptors.response.use(res => {
+      let a = document.createElement('a');
+      let url = window.URL.createObjectURL(res.data);
+      a.href = url;
+      a.download = fileName;
+      a.click();
+      window.URL.revokeObjectURL(url);
+  });
 
   return instance;
 }

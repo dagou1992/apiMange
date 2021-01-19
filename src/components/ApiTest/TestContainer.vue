@@ -9,9 +9,9 @@
       >
         <i class="el-icon-plus"></i> 新建
       </el-button>
-      
+
       <el-select
-        style="width: 130px;float: right"
+        style="width: 130px; float: right;"
         v-model="env"
         size="small"
         clearable
@@ -69,16 +69,18 @@ export default {
   watch: {
     env(value) {
       if (value && value !== '') {
-          this.$refs.testBody.forEach(item => item.path = value)
+        this.$refs.testBody.forEach(item => (item.path = value));
       }
-    }
+    },
   },
   methods: {
     handleTabsAdd() {
       const newIndex = this.tabList.length;
       this.tabList.push({ index: this.tabList.length, label: '新标签' });
       this.activeTab = newIndex.toString();
-      this.$nextTick(() => this.$refs.testBody[this.activeTab].path = this.env);
+      this.$nextTick(
+        () => (this.$refs.testBody[this.activeTab].path = this.env),
+      );
     },
     handleTabsRemove(name) {
       const index = Number(name);
