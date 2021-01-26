@@ -31,6 +31,7 @@ export function exportFileData(url, data) {
 function getDefaultInstance() {
   const instance = axios.create({
     baseURL: '/',
+    withCredentials: true,
   });
 
   // instance.interceptors.request.use(config => {});
@@ -38,6 +39,9 @@ function getDefaultInstance() {
   instance.interceptors.response.use(
     res => {
       if (res.data.code !== 200) {
+        if (res.data.code === 200001) {
+          window.location.href = `${res.data.msg}?from=${window.location.href}`;
+        }
         return res.data;
       } else {
         return res.data.data;

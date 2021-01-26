@@ -1,17 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title><%= htmlWebpackPlugin.options.title %></title>
-  </head>
-  <body>
-    <noscript>
-      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
-    </noscript>
-    <div id="app"></div>
-    <!-- built files will be auto injected -->
-  </body>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+  <title>
+    <%= htmlWebpackPlugin.options.title %>
+  </title>
+</head>
+
+<body>
+  <noscript>
+    <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled.
+        Please enable it to continue.</strong>
+  </noscript>
+  <div id="app"></div>
+  <!-- built files will be auto injected -->
+  <script>
+    // 监听 window 对象的 message 事件（其他域的页面向本页面发起的 postMessage 会触发 message 事件），e.data 是发送的信息
+    window.addEventListener('message', function (e) {
+      // 前端页面的 cookie 存放的时间
+      var maxAge = 24 * 60 * 60 * 1000;
+      var ip_reg = /^(\d+)\.(\d+)\.(\d+)\.(\d+)$/;
+      var hostname = window.location.hostname;
+      // domain 是用来存放 cookie 的 domain 值的
+      var domain;
+      // 检测访问本页面是否使用的 ip 访问的
+      if (ip_reg.test(hostname)) {
+        // 如果是，就设置 domain 为这个 ip
+        domain = hostname
+      } else {
+        // 如果不是，就检测域名是否符合一般域名的格式
+        var hostArr = hostname.split('.');
+        var length = hostArr.length;
+        if (length > 2) {
+          // 符合，将将 domain 设置成 '.example.com' 形式
+          domain = '.' + hostArr[length - 2] + '.' + hostArr[length - 1];
+        } else {
+          // 不符合，如 localhost，就将 domain 设置成 hostname
+          domain = hostname;
+        }
+      }
+      // 判断 message 事件的来源，如果 message 事件来源是登录页面发起的，就将值存入 userInfoToken 这个 cookie 中
+      if (e.origin === 'http://192.168.3.110:7002') {
+        document.cookie = 'userInfoToken=' + e.data + ';domain=' + domain + ';max-age=' + maxAge + ';path=/';
+        top.postMessage('cookie设置成功', e.origin);
+      }
+    }, false);
+  </script>
+</body>
+
 </html>
